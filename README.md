@@ -1,27 +1,30 @@
-# Edge-AI-Industrial-Safety-Compliance-Auditor
-An end-to-end simulation of an edge-deployed, real-time safety monitoring system tailored for construction sites, smart warehouses, and manufacturing plants. This project goes beyond passive object detection by integrating dynamic business logic, custom geofencing, and automated alert systems to actively mitigate workplace hazards.
+# 🛡️ Edge-AI Industrial Safety & Compliance Auditor
 
-# Key Features
-Real-Time PPE Detection: Processes live video feeds to detect essential Personal Protective Equipment (PPE), specifically focusing on hard hats and high-visibility safety vests.
+## 📌 Project Overview
+This project is an automated AI auditor designed to enhance safety on construction and industrial sites. Using computer vision, it monitors real-time video feeds or images to ensure workers are wearing proper Personal Protective Equipment (PPE) and are not entering restricted hazard zones.
 
-Dynamic Restricted Zones: Features an interactive interface allowing users to draw custom "virtual keep-out zones" directly onto the live camera stream.
+## 🏭 Application
+*   **PPE Compliance**: Automatically detects if workers are missing hard hats, vests, or safety boots.
+*   **Hazard Zone Monitoring**: Defines virtual restricted areas and triggers alerts if a person enters a dangerous zone.
+*   **Edge Deployment**: Optimized for real-time monitoring on site without requiring heavy infrastructure.
 
-Intrusion & Hazard Alerting: Instantly triggers an automated visual/audio alarm system the moment a human presence intersects with a designated hazardous area.
+## ✨ Key Features
+*   **YOLOv11 Detection**: High-accuracy detection of PPE items and personnel.
+*   **Virtual Safety Fence**: Uses polygon-based detection to identify zone intrusions based on personnel foot placement.
+*   **Multi-Source Input**: Supports local image files, local video files, and direct YouTube stream links.
+*   **High-Visibility UI**: Color-coded bounding boxes with high-contrast text backgrounds for clear visibility in busy industrial environments.
 
-Edge-Optimized Architecture: Designed with low-latency constraints in mind, simulating how the system runs locally on resource-constrained edge hardware.
+## 🛠️ Tech Stack & Libraries
+*   **Language**: Python
+*   **Model Architecture**: YOLOv11 (Ultralytics)
+*   **Computer Vision**: OpenCV (cv2)
+*   **Video Handling**: yt-dlp (for YouTube processing)
+*   **Data Handling**: NumPy, Roboflow (Dataset management)
+*   **Platform**: Google Colab / Linux Edge Devices
 
-# Tech Stack 
-Computer Vision & AI: OpenCV, YOLOv8 / YOLOv11 (or equivalent lightweight detector), PyTorch
-
-GUI / Interface: Tkinter / PyQt (for drawing zones) or a lightweight web UI (Streamlit / Flask)
-
-Deployment: ONNX Runtime / OpenVINO (for edge optimization simulation)
-
-# How It Works
-Video Ingestion: The system captures frames from a live webcam or pre-recorded industrial site footage.
-
-Inference Pipeline: Frames are passed through an object detection model to locate workers, vests, and helmets simultaneously.
-
-Geofencing Logic: The system checks if the bounding box coordinates of any detected person overlap with the user-defined polygon (Restricted Zone).
-
-Compliance Audit: If a worker is inside a valid zone but missing PPE, or if anyone enters a restricted zone, the system flags a violation and fires an alert.
+## 🚀 How it Works
+1.  **Detection**: The model identifies classes like `person`, `helmet`, `no-helmet`, `vest`, etc.
+2.  **Safety Logic**: 
+    *   If a `person` bounding box intersects with the defined `hazard_zone`, a **RED INTRUSION** alert is triggered.
+    *   If a `no-` class (e.g., `no-helmet`) is detected, an **ORANGE MISSING PPE** alert is triggered.
+3.  **Visualization**: Results are displayed with real-time annotations and safety warnings.
