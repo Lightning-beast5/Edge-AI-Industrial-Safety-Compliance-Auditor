@@ -28,3 +28,6 @@ This project is an automated AI auditor designed to enhance safety on constructi
     *   If a `person` bounding box intersects with the defined `hazard_zone`, a **RED INTRUSION** alert is triggered.
     *   If a `no-` class (e.g., `no-helmet`) is detected, an **ORANGE MISSING PPE** alert is triggered.
 3.  **Visualization**: Results are displayed with real-time annotations and safety warnings.
+
+## Training Model
+![Alt Text](Model_train.jpeg)
